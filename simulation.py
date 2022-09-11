@@ -4,7 +4,7 @@ import random
 
 
 class Gacha:
-    p = 0.04877
+    p = 0.0487891
     p_weapon = 0.2 * p
     p_single_trace = 0.1 * p
 
@@ -98,13 +98,13 @@ class Gacha:
 if __name__ == '__main__':
     x = [i for i in range(201)]
     y = np.zeros(201)
-    for i in range(100000):
+    for i in range(5000000):
         gacha = Gacha()
         gacha.complete()
         y[gacha.num] += 1
     y = y / y.sum()
-    np.save('gacha.npy', y)
+    np.save('result/gacha.npy', y)
     print('期望：', np.average(x, weights=y))
     plt.plot(y)
-    plt.savefig('gacha.svg', dpi=600, format='svg')
+    plt.savefig('result/gacha.svg', dpi=600, format='svg')
     plt.show()
